@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from .forms import DepositForm,WithdrawForm
+from .forms import DepositForm,WithdrawForm,TransferForm
+from users.models  import *
+from .models import Transfer
 
 def deposit_view(request):
     form = DepositForm(request.POST or None)
@@ -40,13 +42,24 @@ def withdraw_view(request):
     }
     return render(request, "DW/DW.htm", context)
 
-def trans(request):
-    dep_obj  = Withdraw.objects.all()
-    with_obj = Deposit.objects.all()
+def transfer_view(request):
+    form = TransferForm(request.POST or None)
 
-    context={
-        'dep_obj':dep_obj,
-        'with_obj':with_obj,
+    if form.is_valid():
+        transfer= form.save(commit=False)
+        transfer.user=request.user
+        transfer.save()
+        transfer.user.balance-=transfer.amount
+        send_obj=CustomUser.objects.get(account_id=transfer.sender_id)
+        send_obj.balance+=transfer.amount
+        transfer.user.save()
+        send_obj.save()
+        messages.success(request, 'You Have Sent Money .'.format(transfer.amount))
+        return redirect("home")
+
+    context = {
+        "title": "Transfer",
+        "form": form
     }
+    return render(request, "DW/DW.htm", context)
 
-    return render(request,'Trans/trans.htm', context)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mini Statement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        h2 align="center">Transactions Details</h2>
+        <b>Deposit details</b><hr>
+        <table>
+            <tr>
+              <th>Amount</th>
+              <th>Type of </th>
+              <th> &nbsp;</th>
+              <th>Time of the Transaction</th> 
+            </tr>
+            {% for i in dep_obj %}
+                <tr>
+                    <td>+{{i.amount}}</td>
+                    <td> &nbsp;</td>
+                    <td>{{i.timestamp}}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    
+</body>
+</html>

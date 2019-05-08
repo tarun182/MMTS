@@ -5,6 +5,9 @@
 {% block content %}
 {% if user.is_authenticated %}
   Welcome, {{ user.email }}!
+  <br>
+  <br>
+  your account number is {{user.account_id}}
   <p><a href="{% url 'logout' %}">Log Out</a></p>
   <br>
   <br>
@@ -15,6 +18,9 @@
   <br>
   <br>
   <a href="/DW/Withdraw">Withdraw Money</a>
+  <br>
+  <br>
+  <a href="/DW/Tranfer">Transfer Money</a>
   <br>
   <br>
   <a href="/TransactionDetails">My Transaction Details</a>

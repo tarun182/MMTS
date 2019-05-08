@@ -27,6 +27,4 @@ urlpatterns = [
     path('TransactionDetails/', trans),
     path('users/', include('django.contrib.auth.urls')),
     path('checkBal/',TemplateView.as_view(template_name='check_bal.htm'),name='check Bal'),
-
-    #path('Deposit/',)
 ]
