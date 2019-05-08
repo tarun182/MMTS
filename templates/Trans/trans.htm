@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Transaction details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <h2 align="center">Transactions Details</h2>
+    <b>Deposit details</b><hr>
+    <table>
+        <tr>
+          <th>Amount</th>
+          <th> &nbsp;</th>
+          <th>Time of the Transaction</th> 
+        </tr>
+        {% for i in dep_obj %}
+            <tr>
+                <td>+{{i.amount}}</td>
+                <td> &nbsp;</td>
+                <td>{{i.timestamp}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <br>
+    <br>
+    <b>Withdraw Details</b><hr>
+    <table>
+        <tr>
+          <th>Amount</th>
+          <th> &nbsp;</th>
+          <th>Time of the Transaction</th> 
+        </tr>
+        {% for i in with_obj %}
+            <tr>
+                <td>-{{i.amount}}</td>
+                <td> &nbsp;</td>
+                <td>{{i.timestamp}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <br>
+    <br>
+    <b>Transfer Details</b><hr>
+    <a href="/">Go back</a>
+</body>
+</html>
