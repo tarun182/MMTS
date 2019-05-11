@@ -21,6 +21,11 @@
               background-color: #f2f2f2
             }
             </style>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
         <h2 align="center">Mini Statement</h2><hr>
@@ -32,43 +37,81 @@
               <th> &nbsp;</th>
               <th>Time of the Transaction</th> 
             </tr>
-            {% for i in dep_obj %}
+            {% for i in dep_obj reversed%}
                 <tr>
                     <td>+{{i.amount}}</td>
                     <td> &nbsp;</td>
                     <td>Deposit</td>
                     <td> &nbsp;</td>
-                    <td>{{i.timestamp}}</td>
+                    <td>{{i.timestamp|date:"SHORT_DATE_FORMAT"}} &nbsp;{{i.timestamp|time:"H:i"}}</td>
                 </tr>
             {% endfor %}
-            {% for i in with_obj %}
+            {% for i in with_obj reversed %}
             <tr>
                 <td>-{{i.amount}}</td>
                 <td> &nbsp;</td>
                 <td>Withdraw</td>
                 <td> &nbsp;</td>
-                <td>{{i.timestamp}}</td>
+                <td>{{i.timestamp|date:"SHORT_DATE_FORMAT"}} &nbsp;{{i.timestamp|time:"H:i"}}</td>
             </tr>
         {% endfor %}
-        {% for i in Td_obj %}
+        {% for i in Td_obj reversed %}
             <tr>
                 <td>-{{i.amount}}</td>
                 <td> &nbsp;</td>
                 <td>Debited into {{i.sender_id}}</td>
                 <td> &nbsp;</td>
-                <td>{{i.timestamp}}</td>
+                <td>{{i.timestamp|date:"SHORT_DATE_FORMAT"}} &nbsp;{{i.timestamp|time:"H:i"}}</td>
             </tr>
         {% endfor %}
-        {% for i in Tc_obj %}
+        {% for i in Tc_obj reversed %}
             <tr>
                 <td>+{{i.amount}}</td>
                 <td> &nbsp;</td>
                 <td>Credited from {{i.sender_id}}</td>
                 <td> &nbsp;</td>
-                <td>{{i.timestamp}}</td>
+                <td>{{i.timestamp|date:"SHORT_DATE_FORMAT"}} &nbsp;{{i.timestamp|time:"H:i"}}</td>
             </tr>
         {% endfor %}
         </table>
+        <script>
+                function sortTable() {
+                  var table, rows, switching, i, x, y, shouldSwitch;
+                  table = document.getElementById("myTable");
+                  switching = true;
+                  /*Make a loop that will continue until
+                  no switching has been done:*/
+                  while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                      //start by saying there should be no switching:
+                      shouldSwitch = false;
+                      /*Get the two elements you want to compare,
+                      one from current row and one from the next:*/
+                      x = rows[i].getElementsByTagName("TD")[2];
+                      y = rows[i + 1].getElementsByTagName("TD")[2];
+                      //check if the two rows should switch place:
+                      if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                      }
+                    }
+                    if (shouldSwitch) {
+                      /*If a switch has been marked, make the switch
+                      and mark that a switch has been done:*/
+                      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                      switching = true;
+                    }
+                  }
+                }
+                sortTable()
+                
+                </script>
     
 </body>
 </html>
