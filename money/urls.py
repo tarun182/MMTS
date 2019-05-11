@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
-from trans.views import trans
+from trans.views import trans, mini
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.htm'), name='home'),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('DW/', include('DW.urls')),
     path('TransactionDetails/', trans),
+    path('MiniStat/', mini),
     path('users/', include('django.contrib.auth.urls')),
     path('checkBal/',TemplateView.as_view(template_name='check_bal.htm'),name='check Bal'),
 ]

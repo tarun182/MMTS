@@ -5,14 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Mini Statement</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+            table {
+              border-spacing: 0;
+              width: 50%;
+              border: 1px solid #ddd;
+            }
+            
+            th, td {
+              text-align: left;
+              padding: 16px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #f2f2f2
+            }
+            </style>
 </head>
 <body>
-        h2 align="center">Transactions Details</h2>
-        <b>Deposit details</b><hr>
-        <table>
+        <h2 align="center">Mini Statement</h2><hr>
+        <table id="myTable">
             <tr>
               <th>Amount</th>
-              <th>Type of </th>
+              <th> &nbsp;</th>
+              <th>Transaction Type </th>
               <th> &nbsp;</th>
               <th>Time of the Transaction</th> 
             </tr>
@@ -20,10 +36,38 @@
                 <tr>
                     <td>+{{i.amount}}</td>
                     <td> &nbsp;</td>
+                    <td>Deposit</td>
+                    <td> &nbsp;</td>
                     <td>{{i.timestamp}}</td>
                 </tr>
             {% endfor %}
-
+            {% for i in with_obj %}
+            <tr>
+                <td>-{{i.amount}}</td>
+                <td> &nbsp;</td>
+                <td>Withdraw</td>
+                <td> &nbsp;</td>
+                <td>{{i.timestamp}}</td>
+            </tr>
+        {% endfor %}
+        {% for i in Td_obj %}
+            <tr>
+                <td>-{{i.amount}}</td>
+                <td> &nbsp;</td>
+                <td>Debited into {{i.sender_id}}</td>
+                <td> &nbsp;</td>
+                <td>{{i.timestamp}}</td>
+            </tr>
+        {% endfor %}
+        {% for i in Tc_obj %}
+            <tr>
+                <td>+{{i.amount}}</td>
+                <td> &nbsp;</td>
+                <td>Credited from {{i.sender_id}}</td>
+                <td> &nbsp;</td>
+                <td>{{i.timestamp}}</td>
+            </tr>
+        {% endfor %}
         </table>
     
 </body>
