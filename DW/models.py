@@ -21,7 +21,7 @@ class Deposit(models.Model):
             MinValueValidator(Decimal('10.00'))
         ]
     )
-    timestamp   = models.DateTimeField(auto_now_add=True)
+    timestamp   = models.DateTimeField("Gepubliceerd", auto_now_add=True)
     #timestamp = models.DateTimeField(blank=False,default=timezone.now)
 
 
@@ -31,7 +31,7 @@ class Deposit(models.Model):
 class Withdraw(models.Model):
     user = models.ForeignKey(
         User,
-        related_name='withdrawals',
+        related_name='withdraw',
         on_delete=models.CASCADE,
     )
     amount = models.DecimalField(
@@ -42,8 +42,27 @@ class Withdraw(models.Model):
         ]
     )
 
-    timestamp   = models.DateTimeField(auto_now_add=True)
+    timestamp   = models.DateTimeField("Gepubliceerd", auto_now_add=True)
     #timestamp = models.DateTimeField(blank=False,default=timezone.now)
     
+    def __str__(self):
+        return str(self.user.account_id)
+
+class Transfer(models.Model):
+    user = models.ForeignKey(
+        User,
+        related_name='Transfer',
+        on_delete=models.CASCADE,
+    )
+    sender_id=models.IntegerField()
+    amount = models.DecimalField(
+        decimal_places=2,
+        max_digits=12,
+        validators=[
+            MinValueValidator(Decimal('10.00'))
+        ]
+    )
+    timestamp   = models.DateTimeField("Gepubliceerd", auto_now_add=True)
+
     def __str__(self):
         return str(self.user.account_id)
