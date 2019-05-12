@@ -23,7 +23,7 @@
   Welcome, {{ user.email }}!
  
 {% else %}
-  <p>You are not logged in</p>
+  <p>Login or Register to use our Services</p>
   <a href="{% url 'login' %}">Log In</a> |
   <a href="{% url 'signup' %}">Sign Up</a>
 {% endif %}
