@@ -3,36 +3,31 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
+<!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+      <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ </head>
+ <body>
+          {% if user.is_authenticated %}
   Welcome, {{ user.email }}!
-  <br>
-  <br>
-  your account number is {{user.account_id}}
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
-  <br>
-  <br>
-  <a href="/checkBal">Check balance</a>
-  <br>
-  <br>
-  <a href="/MiniStat">Mini Statement</a>
-  <br>
-  <br>
-  <a href="/DW/Deposit">Deposit Money</a>
-  <br>
-  <br>
-  <a href="/DW/Withdraw">Withdraw Money</a>
-  <br>
-  <br>
-  <a href="/DW/Tranfer">Transfer Money</a>
-  <br>
-  <br>
-  <a href="/TransactionDetails">My Transaction Details</a>
-  <br>
-  <br>
-  <a href="/users/change-pass">change password</a>
+ 
 {% else %}
-  <p>You are not logged in</p>
+  <p>Login or Register to use our Services</p>
   <a href="{% url 'login' %}">Log In</a> |
   <a href="{% url 'signup' %}">Sign Up</a>
 {% endif %}
+</body>
+</html>
 {% endblock %}
+
