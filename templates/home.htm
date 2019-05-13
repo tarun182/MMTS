@@ -19,9 +19,10 @@
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
  </head>
  <body>
+   <h5>
           {% if user.is_authenticated %}
-  Welcome, {{ user.email }}!
- 
+  Welcome, <b>{{ user.email }}!</b> <br><br> Your Account number is <b> {{user.account_id}}</b>
+</h5>
 {% else %}
   <p>Login or Register to use our Services</p>
   <a href="{% url 'login' %}">Log In</a> |
