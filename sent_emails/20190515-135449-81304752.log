@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: tarun.mrperfect@gmail.com
+Date: Wed, 15 May 2019 08:24:49 -0000
+Message-ID: <155790868981.22508.16939266592566497121@TARUN-PC.Dlink>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/users/reset/Mw/56c-232ed1bd2bd8e4c63d79/
+
+Your username, in case you've forgotten: tarun.mrperfect@gmail.com
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------

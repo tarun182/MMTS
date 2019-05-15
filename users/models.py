@@ -22,7 +22,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     balance        =  models.IntegerField(default=0)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    date_of_birth  =  models.DateTimeField(blank=False, default=timezone.now)
+    #date_of_birth  =  models.DateTimeField(blank=False, default=timezone.now)
 
     location = (
         ('B', 'Banglore'),

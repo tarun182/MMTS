@@ -16,6 +16,7 @@ class SignUp(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 
+
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -31,3 +32,8 @@ def change_password(request):
     return render(request, 'change_password.htm', {
         'form': form
     })
+def home(request):
+    context: {
+        'name':name
+    }
+    return render(request,'home.htm', context)
